@@ -4,11 +4,11 @@ config:
   slack_channel: pelias-ci-cd
 environment:
   GOCACHE: /tmp/.cache/go-build
+  BUILD_IMAGE: 'maven:3.6-jdk-11'
 jobs:
   build_docker:
     steps:
-      - build_image:
-          dockerfile: ./Dockerfile
+      - build_image
   publish_docker:
     steps:
       - push_image
@@ -24,7 +24,7 @@ jobs:
     steps:
       - deploy_production:
           cluster: k8s-operations-prod
-          namespace: delivery
+          namespace: default
           workload: pelias-placeholder
           spinnaker_pipeline: generic-v2
           deployment_config: prod
@@ -36,7 +36,7 @@ workflows:
             branches:
               only:
                 - develop
-                - master
+                - main
       - publish_docker:
           requires:
             - build_docker
@@ -44,7 +44,7 @@ workflows:
             branches:
               only:
                 - develop
-                - master
+                - main
       - deploy_dev:
           requires:
             - publish_docker
@@ -58,7 +58,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
 deployment_config:
   dev:
     ingress:
@@ -83,3 +83,10 @@ deployment_config:
             - path: /
               port: '80'
     replicaCount: 1
+    volumes:
+      - name: pelias-placeholder
+        persistentVolumeClaim:
+          claimName: pelias-placeholder
+    volumeMounts:
+      - mountPath: /data/placeholder
+        name: pelias-placeholder
