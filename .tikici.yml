@@ -1,13 +1,14 @@
 version: '2'
 config:
   slack_notify: true
-  slack_channel: ops-delivery2
+  slack_channel: pelias-ci-cd
 environment:
-  BUILD_IMAGE: 'maven:3.6-jdk-11'
+  GOCACHE: /tmp/.cache/go-build
 jobs:
   build_docker:
     steps:
-      - build_image
+      - build_image:
+          dockerfile: ./Dockerfile
   publish_docker:
     steps:
       - push_image
@@ -23,7 +24,7 @@ jobs:
     steps:
       - deploy_production:
           cluster: k8s-operations-prod
-          namespace: default
+          namespace: delivery
           workload: pelias-placeholder
           spinnaker_pipeline: generic-v2
           deployment_config: prod
@@ -67,6 +68,13 @@ deployment_config:
             - path: /
               port: '80'
     replicaCount: 1
+    volumes:
+      - name: pelias-placeholder
+        persistentVolumeClaim:
+          claimName: pelias-placeholder
+    volumeMounts:
+      - mountPath: /data/placeholder
+        name: pelias-placeholder
   prod:
     ingress:
       hosts:

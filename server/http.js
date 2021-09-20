@@ -31,7 +31,7 @@ const envCpus = parseInt( process.env.CPUS, 10 );
 const cpus = Math.min( Math.max( envCpus || Infinity, 1 ), os.cpus().length );
 
 // optionally override port/host using env var
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 80;
 var HOST = process.env.HOST || undefined;
 var app = express();
 

@@ -16,6 +16,10 @@ RUN npm install
 # copy code from local checkout
 ADD . ${WORKDIR}
 
+#download data file
+RUN curl -s https://data.geocode.earth/placeholder/store.sqlite3.gz | gunzip > data/placeholder/store.sqlite3;
+
+
 ENV WOF_DIR '/data/whosonfirst/sqlite'
 ENV PLACEHOLDER_DATA '/data/placeholder'
 
