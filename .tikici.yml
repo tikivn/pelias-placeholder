@@ -1,7 +1,7 @@
 version: '2'
 config:
   slack_notify: true
-  slack_channel: ops-delivery2
+  slack_channel: pelias-ci-cd
 environment:
   BUILD_IMAGE: 'maven:3.6-jdk-11'
 jobs:
