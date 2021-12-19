@@ -17,7 +17,7 @@ jobs:
       - deploy_dev:
           cluster: dev
           namespace: operations
-          workload: pelias-api
+          workload: pelias-placeholder
           spinnaker_pipeline: generic-v2
           deployment_config: dev
   deploy_prod:
@@ -25,7 +25,7 @@ jobs:
       - deploy_production:
           cluster: k8s-operations-prod
           namespace: delivery
-          workload: pelias-api
+          workload: pelias-placeholder
           spinnaker_pipeline: generic-v2
           deployment_config: prod
 workflows:
