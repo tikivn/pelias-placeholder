@@ -1,0 +1,33 @@
+{
+  "esclient": {
+    "hosts": [{
+      "host": "deliver-es-http.elastisearch.svc",
+      "port": 9200
+    }]
+  },
+  "api": {
+    "targets": {
+      "auto_discover": false,
+      "canonical_sources": [ "whosonfirst", "openstreetmap", "openaddresses", "geonames" ],
+      "layers_by_source": {
+        "custom-data": ["custom-data", "with_custom_data"],
+        "openstreetmap": [ "address", "venue", "street" ],
+        "openaddresses": [ "address" ],
+        "geonames": [ "country", "macroregion", "region", "county", "localadmin", "locality", "borough", "neighbourhood", "venue"],
+        "whosonfirst": [
+          "continent", "empire", "country", "dependency", "macroregion", "region", "locality",
+          "localadmin", "macrocounty", "county", "macrohood", "borough", "neighbourhood",
+          "microhood", "disputed", "venue", "postalcode", "continent", "ocean", "marinearea"
+        ]
+      }
+    },
+    "services": {
+      "libpostal": {
+        "url": "http://pelias-libpostal.tiki.services"
+      },
+      "placeholder": {
+        "url": "http://pelias-placeholder.tiki.services"
+      }
+    }
+  }
+}

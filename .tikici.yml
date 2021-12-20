@@ -86,7 +86,7 @@ deployment_config:
               port: '3000'
     replicaCount: 1
     envVars:
-      PELIAS_CONFIG: ./pelias.json
+      PELIAS_CONFIG: ./pelias.prod.json
     volumes:
       - name: pelias-placeholder-poneglyph
         persistentVolumeClaim:
