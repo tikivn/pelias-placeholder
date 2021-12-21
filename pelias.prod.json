@@ -26,7 +26,7 @@
         "url": "http://pelias-libpostal.tiki.services"
       },
       "placeholder": {
-        "url": "http://pelias-placeholder.tiki.services"
+        "url": "http://pelias-placeholder-api.tiki.services"
       }
     }
   }
