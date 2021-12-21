@@ -94,7 +94,7 @@ deployment_config:
     volumes:
       - name: pelias-placeholder-poneglyph
         persistentVolumeClaim:
-          claimName: pelias-placeholder
+          claimName: pelias-placeholder-poneglyph
     volumeMounts:
       - mountPath: /data/placeholder
         name: pelias-placeholder-poneglyph
