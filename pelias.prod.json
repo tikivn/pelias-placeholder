@@ -1,7 +1,7 @@
 {
   "esclient": {
     "hosts": [{
-      "host": "deliver-es-http.elastisearch.svc",
+      "host": "https://delivery-es-http.elasticsearch.svc",
       "port": 9200
     }]
   },
