@@ -25,7 +25,7 @@ jobs:
       - deploy_production:
           cluster: k8s-operations-prod
           namespace: delivery
-          workload: pelias-placeholder
+          workload: pelias-placeholder-api
           spinnaker_pipeline: generic-v2
           deployment_config: prod
 workflows:
@@ -80,7 +80,7 @@ deployment_config:
   prod:
     ingress:
       hosts:
-        - host: pelias-placeholder.tiki.services
+        - host: pelias-placeholder-api.tiki.services
           paths:
             - path: /
               port: '3000'
