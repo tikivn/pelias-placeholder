@@ -85,6 +85,10 @@ deployment_config:
             - path: /
               port: '3000'
     replicaCount: 1
+    resources:
+      requests:
+        cpu: '500m'
+        memory: 2Gi
     envVars:
       PELIAS_CONFIG: ./pelias.prod.json
     volumes:
